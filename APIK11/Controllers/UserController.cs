@@ -16,21 +16,40 @@ namespace APIK11.Controllers
         {
             _userService = userService;
         }
-        // GET: api/<UserController>
+
+        /// <summary>
+        /// Obtiene una lista de usuarios paginada.
+        /// </summary>
+        /// <param name="numeroPagina">Número de página para la paginación.</param>
+        /// <remarks>
+        /// Aplicación destino:
+        /// - App móvil de gestión de usuarios
+        /// Vistas: 
+        /// - C.001, C.002
+        /// </remarks>
+        /// <returns>Una lista de usuarios paginada.</returns>
         [HttpGet()]
         public IEnumerable<User> GetUsers(int numeroPagina)
         {
             return _userService.GetUsers(numeroPagina);
         }
 
-        // GET api/<UserController>/5
+        /// <summary>
+        /// Obtiene un usuario por su ID.
+        /// </summary>
+        /// <param name="id">ID del usuario a recuperar.</param>
+        /// <returns>El usuario correspondiente al ID proporcionado.</returns>
         [HttpGet("{id}")]
         public User Get(int id)
         {
             return _userService.GetUserById(id);    
         }
 
-        // POST api/<UserController>
+
+        /// <summary>
+        /// Crea un nuevo usuario.
+        /// </summary>
+        /// <param name="user">Datos del usuario a crear.</param>
         [HttpPost]
         public void Post([FromBody] UsuarioDTO user)
         {
@@ -38,17 +57,17 @@ namespace APIK11.Controllers
 
         }
 
-        // PUT api/<UserController>/5
+    
+        /// <summary>
+        /// Actualiza un usuario existente por su ID.
+        /// </summary>
+        /// <param name="id">ID del usuario a actualizar.</param>
+        /// <param name="user">Datos actualizados del usuario.</param>
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] UsuarioDTO user)
         {
             _userService.UpdateUser(id,user);
         }
 
-        // DELETE api/<UserController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
